@@ -2,16 +2,17 @@
 <html>
   <head>
     <title>Computer History Quiz</title>
-    <!--<link rel="stylesheet" href="styles.css">-->
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
 	<div id="app">
-		<h1>Computer History Quiz</h1>
-		<h2>{{curquestion.question}}</h2>
-		<h3 @click="answer1">{{curquestion.answer1}}</h3>
-		<h3 @click="answer2">{{curquestion.answer2}}</h3>
-		<h3 @click="answer3">{{curquestion.answer3}}</h3>
-		<h3 @click="answer4">{{curquestion.answer4}}</h3>
+		<div id="questiondisplay">
+			<h2>{{curquestion.question}}</h2>
+			<h3 id="ans1" @click="answer1" v-bind:style="answerstyle[0]">{{curquestion.answer1}}</h3>
+			<h3 id="ans2" @click="answer2" v-bind:style="answerstyle[1]">{{curquestion.answer2}}</h3>
+			<h3 id="ans3" @click="answer3" v-bind:style="answerstyle[2]">{{curquestion.answer3}}</h3>
+			<h3 id="ans4" @click="answer4" v-bind:style="answerstyle[3]">{{curquestion.answer4}}</h3>
+		</div>
 		<div id="answerdisplay" v-if="answered">
 			<h2>Did you know?</h2>
 			<p>{{curquestion.answertext}}</p>

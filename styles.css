@@ -1,17 +1,32 @@
-body {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    padding: 20px 100px 0px 100px;
-    background: #f3f3f3;
+body
+{
+	background: url("images/bg.jpg");
+	background-size: 100%;
 }
 
-button {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1em;
+h3
+{
+	xbackground-color: #dddddd;
+	xborder: 2px solid gray;
+	border-radius: 20px;
+	padding: 20px;
+	margin: 20px;
 }
 
-textarea {
-    width: 100%;
-    max-width: 500px;
-    height: 100px;
+#questiondisplay
+{
+	background-color: tan;
+	border: 2px solid brown;
+	border-radius: 20px;
+	padding: 20px;
+	margin: 20px;
+}
+
+#answerdisplay
+{
+	background-color: tan;
+	border: 2px solid brown;
+	border-radius: 20px;
+	padding: 20px;
+	margin: 20px;
 }

@@ -5,9 +5,16 @@ var app = new Vue({
 	  score: 0,
 	  answered: false,
 	  answernum: 0,
+	  answerstyle:
+	  [
+			"background-color: #dddddd; border: 2px solid gray;",
+			"background-color: #dddddd; border: 2px solid gray;",
+			"background-color: #dddddd; border: 2px solid gray;",
+			"background-color: #dddddd; border: 2px solid gray;",
+	  ],
 	  quiz: [
 	  {
-		  question: "This English polymath is credited with inventing the first mechanical computer:",
+		  question: "This English polymath is credited with inventing the first mechanical computer, over 100 years before the ENIAC:",
 		  answer1: "A1",
 		  answer2: "Charles Babbage",
 		  answer3: "A3",
@@ -16,10 +23,10 @@ var app = new Vue({
 		  answerimage: "image1",
 		  answertext: `Charles Babbage's analytical engine, equipped with memory,
 		  conditional control flow, and programmable punch cards, is widely considered to be
-		  the first Turing-complete general-purpose computer ever conceived! Sadly, due to lack of funding
+		  the first Turing-complete general-purpose computer ever conceived. Sadly, due to lack of funding
 		  and ownership disputes, 
 		  Babbage was never able to see his invention built. It actually wasn't until a century after Babbage's
-		  original design that the first fully-functional general-purpose computer was built.`
+		  original design that the first fully functional general-purpose computer would be created.`
 	  },
 	  {
 		  question: "Born in 1912, this man's theoretical model of computation (named after him) is capable of solving any computable problem:",
@@ -29,13 +36,13 @@ var app = new Vue({
 		  answer4: "A4",
 		  correct: 2,
 		  answerimage: "image2",
-		  answertext: `Since its creation in 1936, the Turing Machine has led to many of
-		  computing's most landmark proofs. One such proof is that some problems are uncomputable for
-		  even the most powerful of computers, such as the problem of deciding in every case whether an arbitrary
-		  algorithm or computer will finish on a given input or loop forever.`
+		  answertext: `Since its creation in 1936, the Turing Machine has been the key to many of
+		  computing's most landmark proofs. One such proof is that certain problems are unsolvable for
+		  even the most advanced of computers - for example, the problem of deciding with certainty whether any arbitrary
+		  algorithm will finish on a given input or loop forever (the halting problem).`
 	  },
 	  {
-		  question: "Known as the 'father of information theory', he published a groundbreaking paper in 1948 that showed how digital circuits could be modeled after Boolean algebra:",
+		  question: "Known as the 'father of information theory', he published a groundbreaking paper in 1948 that showed how digital circuits could be designed to implement logical statements:",
 		  answer1: "Claude Shannon",
 		  answer2: "A2",
 		  answer3: "A3",
@@ -43,8 +50,8 @@ var app = new Vue({
 		  correct: 3,
 		  answerimage: "image3",
 		  answertext: `In addition to paving the way for modern digital computers, Shannon also worked
-as a cryptanalyst, helping the U.S. in WWII to crack the encryption algorithms of its enemies' communications.
-Shannon also met Alan Turing during this time, and the two men enjoyed each other's company.`
+as a cryptanalyst, helping the U.S. in WWII to crack the encryption algorithms of its enemies' wartime communications.
+Shannon also met Alan Turing during this time, and the two men discussed each other's ideas over tea.`
 	  },
 	  {
 		  question: "This American inventor received the Nobel Prize along with two other men for his invention of the transistor:",
@@ -54,9 +61,9 @@ Shannon also met Alan Turing during this time, and the two men enjoyed each othe
 		  answer4: "A4",
 		  correct: 1,
 		  answerimage: "babbage",
-		  answertext: `The transistor, a simple electronic switch that is responsible for enabling the lightning-fast
-computations of modern computers, has been so impactful to human society that it often listed as one of the
-"greatest inventions of all time" alongside discoveries like electricity and the steam engine.`
+		  answertext: `The transistor, a simple electronic switch which can change state billions of times a second, has been so impactful
+		  to human society that it often listed as one of the
+greatest inventions of all time, alongside discoveries like electricity and the steam engine. Modern CPU's today typically contain over a billion transistors!`
 	  },
 	  {
 		  question: "This U.S. Navy Rear Admiral invented the first compiler and one of the earliest high-level programming languages, COBOL:",
@@ -81,7 +88,21 @@ computations of modern computers, has been so impactful to human society that it
 	  
   },
   watch: {
-	  
+	  answered: function(oldVal, newVal)
+	  {
+		  console.log("got called");
+		  if (app.answered)
+		  {  
+			  app.answerstyle[app.curquestion.correct] = "background-color: #ddffdd; border: 2px solid green;";
+		  }
+		  else
+		  {
+			  app.answerstyle[0] = "background-color: #dddddd; border: 2px solid gray;";
+			  app.answerstyle[1] = "background-color: #dddddd; border: 2px solid gray;";
+			  app.answerstyle[2] = "background-color: #dddddd; border: 2px solid gray;";
+			  app.answerstyle[3] = "background-color: #dddddd; border: 2px solid gray;";
+		  }
+	  }
   },
   methods: {
 	  answer1: function() {
