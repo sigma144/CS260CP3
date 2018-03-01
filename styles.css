@@ -1,13 +1,32 @@
 body
 {
 	background: url("images/bg.jpg");
-	background-size: 100%;
+	background-size: 150%;
+}
+
+p
+{
+        font-size: 24px;
+}
+
+button
+{
+        position: fixed;
+        background-color: #eeddcc;
+        left: 40%;
+        width: 20%;
+        font-size: 24px;
+        padding: 10px;
+        border-radius: 10px;
+}
+
+h1
+{
+        text-align: center;
 }
 
 h3
 {
-	xbackground-color: #dddddd;
-	xborder: 2px solid gray;
 	border-radius: 20px;
 	padding: 20px;
 	margin: 20px;
@@ -16,7 +35,7 @@ h3
 #questiondisplay
 {
 	background-color: tan;
-	border: 2px solid brown;
+	border: 2px solid sienna;
 	border-radius: 20px;
 	padding: 20px;
 	margin: 20px;
@@ -25,8 +44,15 @@ h3
 #answerdisplay
 {
 	background-color: tan;
-	border: 2px solid brown;
+	border: 2px solid sienna;
 	border-radius: 20px;
 	padding: 20px;
 	margin: 20px;
+        padding-bottom: 60px;
 }
+
+footer
+{
+        text-align: center;
+}
+

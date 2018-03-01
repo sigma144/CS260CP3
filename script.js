@@ -5,6 +5,7 @@ var app = new Vue({
 	  score: 0,
 	  answered: false,
 	  answernum: 0,
+          state: 'title',
 	  answerstyle:
 	  [
 			"background-color: #dddddd; border: 2px solid gray;",
@@ -21,12 +22,12 @@ var app = new Vue({
 		  answer4: "A4",
 		  correct: 1,
 		  answerimage: "image1",
-		  answertext: `Charles Babbage's analytical engine, equipped with memory,
+		  answertext: `Charles Babbage's 1837 Analytical Engine, equipped with memory,
 		  conditional control flow, and programmable punch cards, is widely considered to be
-		  the first Turing-complete general-purpose computer ever conceived. Sadly, due to lack of funding
+		  the first programmable general-purpose computer ever designed. Sadly, due to lack of funding
 		  and ownership disputes, 
 		  Babbage was never able to see his invention built. It actually wasn't until a century after Babbage's
-		  original design that the first fully functional general-purpose computer would be created.`
+		  original design that the first fully functional general-purpose computer would be constructed.`
 	  },
 	  {
 		  question: "Born in 1912, this man's theoretical model of computation (named after him) is capable of solving any computable problem:",
@@ -34,7 +35,7 @@ var app = new Vue({
 		  answer2: "Alan Turing",
 		  answer3: "A3",
 		  answer4: "A4",
-		  correct: 2,
+		  correct: 1,
 		  answerimage: "image2",
 		  answertext: `Since its creation in 1936, the Turing Machine has been the key to many of
 		  computing's most landmark proofs. One such proof is that certain problems are unsolvable for
@@ -47,7 +48,7 @@ var app = new Vue({
 		  answer2: "A2",
 		  answer3: "A3",
 		  answer4: "A4",
-		  correct: 3,
+		  correct: 0,
 		  answerimage: "image3",
 		  answertext: `In addition to paving the way for modern digital computers, Shannon also worked
 as a cryptanalyst, helping the U.S. in WWII to crack the encryption algorithms of its enemies' wartime communications.
@@ -59,7 +60,7 @@ Shannon also met Alan Turing during this time, and the two men discussed each ot
 		  answer2: "A2",
 		  answer3: "William Shockley",
 		  answer4: "A4",
-		  correct: 1,
+		  correct: 2,
 		  answerimage: "babbage",
 		  answertext: `The transistor, a simple electronic switch which can change state billions of times a second, has been so impactful
 		  to human society that it often listed as one of the
@@ -71,7 +72,7 @@ greatest inventions of all time, alongside discoveries like electricity and the 
 		  answer2: "A2",
 		  answer3: "Grace Hopper",
 		  answer4: "A4",
-		  correct: 1,
+		  correct: 2,
 		  answerimage: "babbage",
 		  answertext: `Both an incredible programmer and a loyal patriot, Hopper has become
 		  one of the most respected women in computer science, earning the nickname "Amazing Grace."
@@ -92,8 +93,11 @@ greatest inventions of all time, alongside discoveries like electricity and the 
 	  {
 		  console.log("got called");
 		  if (app.answered)
-		  {  
+		  {
+                          app.answerstyle[app.answernum] = "background-color: #ffbbbb; border: 2px solid red;";
 			  app.answerstyle[app.curquestion.correct] = "background-color: #ddffdd; border: 2px solid green;";
+                          if (app.answernum === app.curquestion.correct)
+                              app.score++;
 		  }
 		  else
 		  {
@@ -105,27 +109,39 @@ greatest inventions of all time, alongside discoveries like electricity and the 
 	  }
   },
   methods: {
+          begin: function() {
+                  app.state = 'quiz';
+                  app.questionnum = 0;
+                  app.curquestion = app.quiz[0];
+          },
 	  answer1: function() {
 		  app.answered = true;
-		  app.answernum = 1;
+		  app.answernum = 0;
 	  },
 	  answer2: function() {
 		  app.answered = true;
-		  app.answernum = 2;
+		  app.answernum = 1;
 	  },
 	  answer3: function() {
 		  app.answered = true;
-		  app.answernum = 3;
+		  app.answernum = 2;
 	  },
 	  answer4: function() {
 		  app.answered = true;
-		  app.answernum = 4;
+		  app.answernum = 3;
 	  },
 	  next: function() {
+                  app.answered = false;
+                  app.answernum = 0;
 		  app.questionnum++;
-		  app.curquestion = app.quiz[app.questionnum];
-		  app.answered = false;
-		  app.answernum = 0;
+                  if (app.questionnum >= app.quiz.length)
+                  {
+                        app.state = 'results'
+                  }
+                  else
+                  {
+                        app.curquestion = app.quiz[app.questionnum];
+                  }
 	  }
   }
 });
