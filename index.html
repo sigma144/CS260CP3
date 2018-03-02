@@ -6,31 +6,70 @@
   </head>
   <body>
 	<div id="app">
-                <div v-if="state === 'title'">
-                        <button id="next" @click="begin">Begin!</button>
-                </div>
+        <div id="titledisplay" v-if="state === 'title'">
+			<h1>Computer Science History Quiz</h1>
+			<h2 style="text-align: center;">Learn about famous figures in computing history!</h2>
+			<div id="titleimg">
+				<img src="images/titleimage1.jpg">
+				<img src="images/titleimage2.jpg">
+				<img src="images/titleimage3.jpg">
+			</div>
+            <button id="next" @click="begin">Begin!</button>
+        </div>
 		<div id="questiondisplay" v-if="state === 'quiz'">
 			<h2>{{curquestion.question}}</h2>
 			<h3 id="ans1" @click="answer1" v-bind:style="answerstyle[0]">{{curquestion.answer1}}</h3>
 			<h3 id="ans2" @click="answer2" v-bind:style="answerstyle[1]">{{curquestion.answer2}}</h3>
 			<h3 id="ans3" @click="answer3" v-bind:style="answerstyle[2]">{{curquestion.answer3}}</h3>
 			<h3 id="ans4" @click="answer4" v-bind:style="answerstyle[3]">{{curquestion.answer4}}</h3>
+			<h2 style="text-align: center;" v-if="answered && answernum === curquestion.correct">That's correct!</h2>
+			<h2 style="text-align: center;" v-if="answered && answernum !== curquestion.correct">Incorrect, correct answer: {{curquestion.correctans}}</h2>
 		</div>
 		<div id="answerdisplay" v-if="answered">
 			<h1>Did you know?</h2>
-			<p>{{curquestion.answertext}}</p>
-			<img v-bind:src="curquestion.answerimage">
+			<div id="didyouknow">
+				<img v-bind:src="'images/' + curquestion.answerimage">
+				<p>{{curquestion.answertext}}</p>
+			</div>
 			<h1>Score: {{score}}/{{questionnum + 1}}</h1>
 			<button id="next" @click="next">Next Question!</button>
 		</div>
-		<div v-if="state === 'results'">
-                    
-                </div>
+		<div id="resultsdisplay" v-if="state === 'results'">
+			<h1>Final Score:</h1>
+			<h1 style="font-size: 48px;">{{score}}/{{questionnum}}</h1>
+			<h1 v-if="score>=10">Perfect!!</h1>
+			<h1 v-if="score>=7">Well done!</h1>
+			<h3 style="text-align: center;">Click the images below to learn about more these famous people in computing.</h3>
+			<h3 style="text-align: center;">Without them, this webpage could likely never have even existed!</h3>
+			<button @click="begin">Try Again</button>
+			<div id="resultsimg">
+				<p>Charles Babbage</p>
+				<p>Ada Lovelace</p>
+				<p>Alan Turing</p>
+				<p>Claude Shannon</p>
+				<p>William Shockley</p>
+				<a href="https://en.wikipedia.org/wiki/Charles_Babbage" target="_blank"><img src="images/resultsimg1.jpg"></a>
+				<a href="https://en.wikipedia.org/wiki/Ada_Lovelace" target="_blank"><img src="images/resultsimg2.jpg"></a>
+				<a href="https://en.wikipedia.org/wiki/Alan_Turing" target="_blank"><img src="images/resultsimg3.jpg"></a>
+				<a href="https://en.wikipedia.org/wiki/Claude_Shannon" target="_blank"><img src="images/resultsimg4.jpg"></a>
+				<a href="https://en.wikipedia.org/wiki/William_Shockley" target="_blank"><img src="images/resultsimg5.jpg"></a>
+				<p>Grace Hopper</p>
+				<p>Steve Wozniak</p>
+				<p>James Gosling</p>
+				<p>Elon Musk</p>
+				<p>Tim Berners-Lee</p>
+				<a href="https://en.wikipedia.org/wiki/Grace_Hopper" target="_blank"><img src="images/resultsimg6.jpg"></a>
+				<a href="https://en.wikipedia.org/wiki/Steve_Wozniak" target="_blank"><img src="images/resultsimg7.jpg"></a>
+				<a href="https://en.wikipedia.org/wiki/James_Gosling" target="_blank"><img src="images/resultsimg8.jpg"></a>
+				<a href="https://en.wikipedia.org/wiki/Elon_Musk" target="_blank"><img src="images/resultsimg9.jpg"></a>
+				<a href="https://en.wikipedia.org/wiki/Tim_Berners-Lee" target="_blank"><img src="images/resultsimg10.jpg"></a>
+			</div>
+        </div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
 	<script src="script.js"></script>
   </body>
   <footer>
-	<a id="footer" href="https://github.com/sigma144/CS260CP2">Link to GitHub</a>
+	<u><a id="footer" style="font-size: 24px; color: white; text-decoration: none;" href="https://github.com/sigma144/CS260CP3.git" target="_blank">Link to GitHub</a></u>
   </footer>
 </html>
